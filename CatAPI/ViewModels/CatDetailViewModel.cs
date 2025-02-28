@@ -26,6 +26,8 @@ public class CatDetailViewModel : BaseViewModel
         set => SetProperty(ref _cat, value);
     }
 
+    public CatDetailViewModel() { }
+
     public CatDetailViewModel(ICatApiService catApiService)
     {
         _catApiService = catApiService;
@@ -46,7 +48,7 @@ public class CatDetailViewModel : BaseViewModel
         }
         catch (Exception)
         {
-            
+            throw new Exception("ERROR");
         }
         finally
         {

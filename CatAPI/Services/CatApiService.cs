@@ -7,7 +7,7 @@ namespace CatAPI.Services;
 public class CatApiService : ICatApiService
 {
     private readonly HttpClient _httpClient;
-    private const string ApiKey = "";
+    private const string ApiKey = "live_Auptc9dXjMBH5TtMfYLu19fFE10gORR0xifbIsnjGYvScYggeJWs2cWacJMSGVTa";
     private const string BaseUrl = "https://api.thecatapi.com/v1";
 
     public CatApiService()
@@ -39,13 +39,18 @@ public class CatApiService : ICatApiService
     {
         try
         {
-            var response = await _httpClient.GetFromJsonAsync<CatApiResponse>($"{BaseUrl}/images/{id}");
+            var response = await _httpClient.GetFromJsonAsync<CatApiResponse>($"{BaseUrl}/breeds/{id}");
+
+            Trace.WriteLine($"FETCH: {BaseUrl}/breeds/{id}");
+            Trace.WriteLine($"FETCH1: {BaseUrl}/images/search?{id}");
+            Trace.WriteLine($"RESPONSE: {response}");
+
+            var response1 = await _httpClient.GetFromJsonAsync<List<Image>>($"{BaseUrl}/images/search?{id}");
 
             return new Cat
             {
                 Id = response.id,
-                Url = response.image.url,
-                Breeds = response.breeds?.Count > 0 ? response.breeds[0].name : "Unknown"
+                Url = response1[0].url,
             };
         }
         catch (Exception ex)
@@ -61,6 +66,17 @@ public class CatApiService : ICatApiService
         public string name { get; set; }
         public Image image { get; set; }
         public List<BreedInfo> breeds { get; set; }
+
+        public string reference_image_id { get; set; }
+
+        public override string ToString()
+        {
+            return $"id: {id}\n" +
+                $"name: {name}\n" +
+                $"image: {image}\n" +
+                $"breeds: {breeds}\n" +
+                $"reference_image_id: {reference_image_id}\n";
+        }
     }
 
     private class Image

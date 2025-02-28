@@ -4,7 +4,10 @@ namespace CatAPI;
 
 public partial class CatDetailPage : ContentPage
 {
-    public CatDetailPage() { }
+    //public CatDetailPage()
+    //{
+    //    InitializeComponent();
+    //}
 
     public CatDetailPage(CatDetailViewModel viewModel)
     {

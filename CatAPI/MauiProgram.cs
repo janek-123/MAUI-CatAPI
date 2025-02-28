@@ -22,6 +22,9 @@ public static class MauiProgram
         builder.Services.AddTransient<CatsPage>();
         builder.Services.AddTransient<CatsViewModel>();
 
+        builder.Services.AddTransient<CatDetailPage>();
+        builder.Services.AddTransient<CatDetailViewModel>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
