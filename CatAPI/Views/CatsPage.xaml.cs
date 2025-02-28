@@ -1,7 +1,6 @@
 using CatAPI.ViewModels;
 
 namespace CatAPI;
-
 partial class CatsPage : ContentPage
 {
     private CatsViewModel _viewModel;
@@ -15,6 +14,7 @@ partial class CatsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        _viewModel.LoadCatsCommand.Execute(null);
+        if (_viewModel.Cats.Count == 0)
+            _viewModel.LoadCatsCommand.Execute(null);
     }
 }

@@ -2,7 +2,6 @@
 using CatAPI.Services;
 
 namespace CatAPI.ViewModels;
-
 [QueryProperty(nameof(CatId), "id")]
 public class CatDetailViewModel : BaseViewModel
 {

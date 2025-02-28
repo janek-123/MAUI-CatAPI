@@ -3,7 +3,6 @@ using CatAPI.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace CatAPI;
-
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()

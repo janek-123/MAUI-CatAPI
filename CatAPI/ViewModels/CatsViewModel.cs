@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace CatAPI.ViewModels;
-
 public class CatsViewModel : BaseViewModel
 {
     private readonly ICatApiService _catApiService;

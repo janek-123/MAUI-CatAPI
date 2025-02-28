@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="20">
             <Label Grid.Row="0" 
-                   Text="{Binding Cat.Breeds}" 
+                   Text="{Binding Cat.Name}" 
                    FontSize="Large"
                    HorizontalOptions="Center"
                    Margin="0,0,0,20"/>
