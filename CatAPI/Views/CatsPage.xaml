@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CatAPI.CatsPage"
+             xmlns:vm="clr-namespace:CatAPI.ViewModels"
+             xmlns:model="clr-namespace:CatAPI.Models"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:CatsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="*" ColumnDefinitions="*">
+            <RefreshView Grid.Row="0" 
+                         Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsBusy}">
+                <CollectionView ItemsSource="{Binding Cats}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Cat">
+                            <Grid Padding="10" ColumnDefinitions="Auto,*">
+                                <Frame Grid.Column="0" 
+                                       CornerRadius="5"
+                                       Padding="0"
+                                       IsClippedToBounds="True"
+                                       HeightRequest="60"
+                                       WidthRequest="60">
+                                    <Image Source="{Binding Url}" 
+                                           Aspect="AspectFill"
+                                           HeightRequest="60"
+                                           WidthRequest="60"/>
+                                </Frame>
+                                <VerticalStackLayout Grid.Column="1" 
+                                                     Padding="10" 
+                                                     Spacing="5"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Breeds}" 
+                                           FontSize="Medium"/>
+                                    <Label Text="{Binding Id}" 
+                                           FontSize="Small"
+                                           TextColor="Gray"/>
+                                </VerticalStackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CatsViewModel}}, Path=SelectCatCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+            <ActivityIndicator Grid.Row="0" 
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,8 +8,8 @@
     Title="CatAPI">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Cats"
+        ContentTemplate="{DataTemplate local:CatsPage}"
+        Route="cats" />
 
 </Shell>

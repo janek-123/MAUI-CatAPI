@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CatAPI.CatDetailPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="20">
+            <Label Grid.Row="0" 
+                   Text="{Binding Cat.Breeds}" 
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <Frame Grid.Row="1" 
+                   CornerRadius="10"
+                   Padding="0"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start">
+                <Image Source="{Binding Cat.Url}" 
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"/>
+            </Frame>
+
+            <ActivityIndicator Grid.RowSpan="2" 
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

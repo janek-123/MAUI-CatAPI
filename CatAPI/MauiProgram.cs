@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CatAPI.Services;
+using CatAPI.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace CatAPI;
 
@@ -15,8 +17,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+        builder.Services.AddSingleton<ICatApiService, CatApiService>();
+
+        builder.Services.AddTransient<CatsPage>();
+        builder.Services.AddTransient<CatsViewModel>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
