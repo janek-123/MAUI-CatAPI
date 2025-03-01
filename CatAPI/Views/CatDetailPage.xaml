@@ -9,30 +9,66 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="20">
-            <Label Grid.Row="0" 
-                   Text="{Binding Cat.Name}" 
-                   FontSize="Large"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,20"/>
+        <Grid>
+            <ScrollView VerticalScrollBarVisibility="Always">
+                <VerticalStackLayout Spacing="10" Margin="0,0,0,20">
+                    <Label
+                        Text="{Binding Cat.Name}" 
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        />
 
-            <Frame Grid.Row="1" 
-                   CornerRadius="10"
-                   Padding="0"
-                   IsClippedToBounds="True"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Start">
-                <Image Source="{Binding Cat.Url}" 
-                       Aspect="AspectFit"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Start"/>
-            </Frame>
+                    <Label
+                        Text="{Binding Cat.Temperament}" 
+                        FontSize="Body"
+                        HorizontalOptions="Center"
+                        Opacity=".5"/>
 
-            <ActivityIndicator Grid.RowSpan="2" 
-                               IsVisible="{Binding IsBusy}"
-                               IsRunning="{Binding IsBusy}"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                    <Label
+                        Text="{Binding Cat.Description}" 
+                        FontSize="Body"
+                        HorizontalOptions="Center"/>
+
+
+                    <Frame 
+                        CornerRadius="10"
+                        Padding="0"
+                        IsClippedToBounds="True"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start">
+                        <Image Source="{Binding Cat.Url}" 
+                            HeightRequest="300"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"/>
+                    </Frame>
+
+                    <TableView Intent="Menu" HorizontalOptions="Center">
+                        <TableRoot>
+                            <TableSection Title="CAT">
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
+                                        <Label Grid.Column="0" Text="Header 1s" FontAttributes="Bold" WidthRequest="-1" />
+                                        <Label Grid.Column="1" Text="Header 2cv" FontAttributes="Bold" WidthRequest="-1" />
+                                    </Grid>
+                                </ViewCell>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
+                                        <Label Grid.Column="0" Text="Header 1s" FontAttributes="Bold" WidthRequest="-1" />
+                                        <Label Grid.Column="1" Text="Header 2cv" FontAttributes="Bold" WidthRequest="-1" />
+                                    </Grid>
+                                </ViewCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <ActivityIndicator
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

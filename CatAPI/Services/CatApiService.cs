@@ -59,6 +59,8 @@ public class CatApiService : ICatApiService
 
         public string? reference_image_id { get; set; }
 
+        public string? life_span { get; set; }
+
         public override string ToString()
         {
             return $"id: {id}, name: {name}, image: ({image}), reference_image_id: {reference_image_id}";
