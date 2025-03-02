@@ -10,9 +10,9 @@ public class CatsViewModel : BaseViewModel
 
     public ObservableCollection<Cat> Cats { get; } = new ObservableCollection<Cat>();
 
-    public ICommand LoadCatsCommand { get; }
-    public ICommand RefreshCommand { get; }
-    public ICommand SelectCatCommand { get; }
+    public ICommand LoadCatsCommand => new Command(async () => await LoadCatsAsync());
+    public ICommand RefreshCommand => new Command(async () => await RefreshCatsAsync());
+    public ICommand SelectCatCommand => new Command<Cat>(async (cat) => await SelectCatAsync(cat));
 
     public CatsViewModel() { }
 
@@ -20,10 +20,6 @@ public class CatsViewModel : BaseViewModel
     {
         _catApiService = catApiService;
         Title = "Cats";
-
-        LoadCatsCommand = new Command(async () => await LoadCatsAsync());
-        RefreshCommand = new Command(async () => await RefreshCatsAsync());
-        SelectCatCommand = new Command<Cat>(async (cat) => await SelectCatAsync(cat));
     }
 
     private async Task LoadCatsAsync()
@@ -36,7 +32,7 @@ public class CatsViewModel : BaseViewModel
         try
         {
             Cats.Clear();
-            var cats = await _catApiService.GetCatsAsync(10);
+            var cats = await _catApiService.GetCatsAsync(15);
             foreach (var cat in cats)
             {
                 Cats.Add(cat);
@@ -48,15 +44,11 @@ public class CatsViewModel : BaseViewModel
         }
     }
 
-    private async Task RefreshCatsAsync()
-    {
-        await LoadCatsAsync();
-    }
+    private async Task RefreshCatsAsync() => await LoadCatsAsync();
 
     private async Task SelectCatAsync(Cat cat)
     {
-        if (cat == null)
-            return;
+        if (cat == null) return;
 
         await Shell.Current.GoToAsync($"{nameof(CatDetailPage)}?id={cat.Id}");
     }

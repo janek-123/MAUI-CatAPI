@@ -14,7 +14,7 @@ public class CatApiService : ICatApiService
         _httpClient.DefaultRequestHeaders.Add("x-api-key", ApiKey);
     }
 
-    public async Task<List<Cat>> GetCatsAsync(int limit = 10)
+    public async Task<List<Cat>> GetCatsAsync(int limit = 20)
     {
         try
         {
@@ -33,16 +33,20 @@ public class CatApiService : ICatApiService
         try
         {
             var breedRes = await _httpClient.GetFromJsonAsync<CatApiResponse>($"{BaseUrl}/breeds/{id}");
-            var imageRes = await _httpClient.GetFromJsonAsync<List<Image>>($"{BaseUrl}/images/search?{id}");
+            var imageRes = await _httpClient.GetFromJsonAsync<List<Image>>($"{BaseUrl}/images/search?{id}&limit=1");
 
-            breedRes.image = imageRes[0];
+            if (breedRes == null)
+                return new Cat("Not found", "Not found", "/");
+
+            if (imageRes != null && imageRes.Count > 0)
+                breedRes.image = imageRes[0];
 
             return breedRes.ToCat();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error fetching cat by id: {ex.Message}");
-            return null;
+            return new Cat("Not found", "Not found", "/");
         }
     }
 
@@ -60,6 +64,14 @@ public class CatApiService : ICatApiService
         public string? reference_image_id { get; set; }
 
         public string? life_span { get; set; }
+        public int? indoor { get; set; }
+        public int? adaptability { get; set; }
+        public int? intelligence { get; set; }
+
+        // urls
+        public string? cfa_url { get; set; }
+        public string? vetstreet_url { get; set; }
+        public string? vcahospitals_url { get; set; }
 
         public override string ToString()
         {
@@ -68,12 +80,18 @@ public class CatApiService : ICatApiService
 
         public Cat ToCat()
         {
-            return new Cat(id ?? "", image?.url ?? "")
+            return new Cat(id ?? "", name ?? "Unknown", image?.url ?? "")
             {
-                Name = name ?? "Unknown",
                 Description = description ?? "Unknown",
                 Temperament = temperament ?? "",
-                Origin = origin ?? ""
+                Origin = origin ?? "",
+                LifeSpan = life_span ?? "",
+                Indoor = indoor != null ? $"{indoor}/5" : "",
+                Adaptability = adaptability != null ? $"{adaptability}/5" : "",
+                Intelligence = intelligence != null ? $"{intelligence}/5" : "",
+                CfaUrl = cfa_url ?? "",
+                VetstreetUrl = vetstreet_url ?? "",
+                VcahospitalsUrl = vcahospitals_url ?? ""
             };
         }
     }

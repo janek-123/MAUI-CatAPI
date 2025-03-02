@@ -30,7 +30,7 @@ public class CatDetailViewModel : BaseViewModel
     public CatDetailViewModel(ICatApiService catApiService)
     {
         _catApiService = catApiService;
-        Title = "Cat Details";
+        Title = "Cat Detail";
     }
 
     private async Task LoadCatAsync(string id)

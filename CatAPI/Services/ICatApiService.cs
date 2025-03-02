@@ -3,6 +3,6 @@
 namespace CatAPI.Services;
 public interface ICatApiService
 {
-    Task<List<Cat>> GetCatsAsync(int limit = 10);
+    Task<List<Cat>> GetCatsAsync(int limit);
     Task<Cat> GetCatByIdAsync(string id);
 }

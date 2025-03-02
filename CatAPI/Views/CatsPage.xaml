@@ -10,15 +10,16 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
             <RefreshView Grid.Row="0" 
                          Command="{Binding RefreshCommand}"
                          IsRefreshing="{Binding IsBusy}">
                 <CollectionView ItemsSource="{Binding Cats}"
-                                SelectionMode="None">
+                                SelectionMode="None"
+                                HorizontalOptions="Center">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Cat">
-                            <Grid Padding="10" ColumnDefinitions="Auto,*">
+                            <Grid Padding="10" ColumnDefinitions="Auto,*" WidthRequest="600">
                                 <Frame Grid.Column="0" 
                                        CornerRadius="5"
                                        Padding="0"
@@ -26,15 +27,11 @@
                                        HeightRequest="60"
                                        WidthRequest="60">
                                     <Image Source="{Binding Url}" 
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="60"/>
+                                           Aspect="AspectFill"/>
                                 </Frame>
-                                <VerticalStackLayout Grid.Column="1" 
-                                                     Padding="10" 
-                                                     Spacing="5"
-                                                     VerticalOptions="Center">
-                                    <Label Text="{Binding Id}" 
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10, 0">
+                                    <Label Text="{Binding Id}"
                                            FontSize="Medium"/>
                                     <Label Text="{Binding Id}" 
                                            FontSize="Small"

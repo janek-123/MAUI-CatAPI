@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <Grid>
             <ScrollView VerticalScrollBarVisibility="Always">
-                <VerticalStackLayout Spacing="10" Margin="0,0,0,20">
+                <VerticalStackLayout Spacing="10" Padding="10,0,10,0" MaximumWidthRequest="600">
                     <Label
                         Text="{Binding Cat.Name}" 
                         FontSize="Large"
@@ -45,17 +45,37 @@
 
                     <TableView Intent="Menu" HorizontalOptions="Center">
                         <TableRoot>
-                            <TableSection Title="CAT">
+                            <TableSection Title="General">
                                 <ViewCell>
                                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
-                                        <Label Grid.Column="0" Text="Header 1s" FontAttributes="Bold" WidthRequest="-1" />
-                                        <Label Grid.Column="1" Text="Header 2cv" FontAttributes="Bold" WidthRequest="-1" />
+                                        <Label Grid.Column="0" Text="Origin" FontAttributes="Bold" WidthRequest="-1"/>
+                                        <Label Grid.Column="1" Text="{Binding Cat.Origin}" WidthRequest="-1"/>
                                     </Grid>
                                 </ViewCell>
                                 <ViewCell>
                                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
-                                        <Label Grid.Column="0" Text="Header 1s" FontAttributes="Bold" WidthRequest="-1" />
-                                        <Label Grid.Column="1" Text="Header 2cv" FontAttributes="Bold" WidthRequest="-1" />
+                                        <Label Grid.Column="0" Text="LifeSpan" FontAttributes="Bold" WidthRequest="-1"/>
+                                        <Label Grid.Column="1" Text="{Binding Cat.LifeSpan}" WidthRequest="-1"/>
+                                    </Grid>
+                                </ViewCell>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
+                                        <Label Grid.Column="0" Text="Indoor" FontAttributes="Bold" WidthRequest="-1"/>
+                                        <Label Grid.Column="1" Text="{Binding Cat.Indoor}" WidthRequest="-1"/>
+                                    </Grid>
+                                </ViewCell>
+
+                                
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
+                                        <Label Grid.Column="0" Text="Adaptability" FontAttributes="Bold" WidthRequest="-1"/>
+                                        <Label Grid.Column="1" Text="{Binding Cat.Adaptability}" WidthRequest="-1"/>
+                                    </Grid>
+                                </ViewCell>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="20" Padding="15,10" HorizontalOptions="Start">
+                                        <Label Grid.Column="0" Text="Intelligence" FontAttributes="Bold" WidthRequest="-1"/>
+                                        <Label Grid.Column="1" Text="{Binding Cat.Intelligence}" WidthRequest="-1"/>
                                     </Grid>
                                 </ViewCell>
                             </TableSection>
