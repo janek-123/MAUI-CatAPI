@@ -1,5 +1,5 @@
 # Cat App
-A cross-platform mobile application built with .NET MAUI that displays images of cats fetched from The Cat API.
+A cross-platform mobile application built with .NET MAUI that displays images of cats fetched from <a href="https://thecatapi.com/">The Cat API</a>.
 
 ## Features
 Browse a list of cat images with breed information
